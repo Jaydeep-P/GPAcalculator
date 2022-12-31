@@ -2,36 +2,26 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { Slider } from "@mui/material";
-
-const marks = [
-  {
-    value: 0,
-    label: "0°C",
-  },
-  {
-    value: 20,
-    label: "20°C",
-  },
-  {
-    value: 37,
-    label: "37°C",
-  },
-  {
-    value: 100,
-    label: "100°C",
-  },
-];
-
-function valuetext(value) {
-  return `${value}°C`;
-}
-
-function valueLabelFormat(value) {
-  return marks.findIndex((mark) => mark.value === value) + 1;
-}
+import Subject from "../components/Subject";
+import { useState } from "react";
 
 export default function Home() {
+  const [infoArray, setInfoArray] = useState([
+    { grade: "", credit: "" },
+    { grade: "", credit: "" },
+    { grade: "", credit: "" },
+    { grade: "", credit: "" },
+    { grade: "", credit: "" },
+    { grade: "", credit: "" },
+    { grade: "", credit: "" },
+  ]);
+
+  const onUpdateHandler = (ind, newData) => {
+    let tempArr = [...infoArray];
+    tempArr[ind] = newData;
+    setInfoArray(tempArr);
+  };
+
   return (
     <>
       <Head>
@@ -41,15 +31,19 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Slider
-          aria-label="Restricted values"
-          defaultValue={20}
-          valueLabelFormat={valueLabelFormat}
-          getAriaValueText={valuetext}
-          step={null}
-          valueLabelDisplay="auto"
-          marks={marks}
-        />
+        <div className={styles.contentWrapper}>
+          {infoArray.map((ele, ind) => {
+            return (
+              <Subject
+                onUpdate={(newData) => {
+                  onUpdateHandler(ind, newData);
+                }}
+                key={ind}
+                data={infoArray[ind]}
+              />
+            );
+          })}
+        </div>
       </main>
     </>
   );
