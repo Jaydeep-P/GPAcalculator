@@ -23,9 +23,13 @@ function valueLabelFormat(value) {
 }
 
 function Subject(props) {
-  const [alignment, setAlignment] = React.useState("3");
+  const [alignment, setAlignment] = React.useState(3);
 
   const handleChange = (event, newAlignment) => {
+    console.log(newAlignment);
+    if (newAlignment == null) {
+      newAlignment = 0;
+    }
     setAlignment(newAlignment);
     props.onUpdate({ ...props.data, credit: newAlignment });
   };
@@ -39,7 +43,7 @@ function Subject(props) {
       <div className={styles.sliderConatiner}>
         <Slider
           aria-label="Restricted values"
-          defaultValue={1}
+          defaultValue={0}
           //   valueLabelFormat={valueLabelFormat}
           getAriaValueText={valuetext}
           step={1}
