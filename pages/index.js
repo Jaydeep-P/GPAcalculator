@@ -3,7 +3,7 @@ import Image from "next/image";
 import Button from "@mui/material/Button";
 import styles from "../styles/Home.module.css";
 import Subject from "../components/Subject";
-import { useState } from "react";
+import { useState, useEffect, use, useDebugValue } from "react";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -28,9 +28,22 @@ export default function Home() {
     { grade: 0, credit: 0 },
     { grade: 0, credit: 0 },
     { grade: 0, credit: 0 },
+    { grade: 0, credit: 0 },
   ]);
-
   const [finalGPA, setGPA] = useState(0);
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("items"));
+    if (items) {
+      setInfoArray(items);
+      console.log(items);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(infoArray));
+    console.log(localStorage.items);
+  }, [infoArray]);
 
   const onUpdateHandler = (ind, newData) => {
     let tempArr = [...infoArray];

@@ -7,7 +7,6 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import MuiToggleButton from "@mui/material/ToggleButton";
 import { styled } from "@mui/material/styles";
 
-
 const marks = [
   { value: 1, label: "F" },
   { value: 2, label: "C" },
@@ -26,7 +25,6 @@ function Subject(props) {
   const [alignment, setAlignment] = React.useState(3);
 
   const handleChange = (event, newAlignment) => {
-    console.log(newAlignment);
     if (newAlignment == null) {
       newAlignment = 0;
     }
@@ -49,94 +47,94 @@ function Subject(props) {
   });
 
   return (
-      <div
-        className={styles.container}
-        style={
-          props.data.credit == 0 || props.data.grade == 0
-            ? {}
-            : {
-                outline: "1px solid rgba(192, 217, 174, 1)",
-                backgroundColor: "#f4fcf5",
-              }
-        }
-      >
-        <div className={styles.sliderConatiner}>
-          <Slider
-            color={
-              props.data.credit == 0 || props.data.grade == 0
-                ? "primary"
-                : "success"
+    <div
+      className={styles.container}
+      style={
+        props.data.credit == 0 || props.data.grade == 0
+          ? {}
+          : {
+              outline: "1px solid rgba(192, 217, 174, 1)",
+              backgroundColor: "#f4fcf5",
             }
-            aria-label="Restricted values"
-            defaultValue={0}
-            //   valueLabelFormat={valueLabelFormat}
-            getAriaValueText={valuetext}
-            step={1}
-            //   valueLabelDisplay="auto"
-            marks={marks}
-            onChange={handleSliderChange}
-            min={1}
-            max={7}
-          />
-        </div>
-        <div className={styles.creditContainer}>
-          <ToggleButtonGroup
-            color={
-              props.data.credit == 0 || props.data.grade == 0
-                ? "primary"
-                : "success"
-            }
-            value={alignment}
-            exclusive
-            onChange={handleChange}
-            aria-label="Platform"
+      }
+    >
+      <div className={styles.sliderConatiner}>
+        <Slider
+          color={
+            props.data.credit == 0 || props.data.grade == 0
+              ? "primary"
+              : "success"
+          }
+          aria-label="Restricted values"
+          defaultValue={0}
+          //   valueLabelFormat={valueLabelFormat}
+          getAriaValueText={valuetext}
+          step={1}
+          //   valueLabelDisplay="auto"
+          marks={marks}
+          onChange={handleSliderChange}
+          min={1}
+          max={7}
+        />
+      </div>
+      <div className={styles.creditContainer}>
+        <ToggleButtonGroup
+          color={
+            props.data.credit == 0 || props.data.grade == 0
+              ? "primary"
+              : "success"
+          }
+          value={alignment}
+          exclusive
+          onChange={handleChange}
+          aria-label="Platform"
+          sx={{
+            width: "100%",
+          }}
+        >
+          <ToggleButton
+            value="1"
             sx={{
               width: "100%",
             }}
           >
-            <ToggleButton
-              value="1"
-              sx={{
-                width: "100%",
-              }}
-            >
-              1
-            </ToggleButton>
-            <ToggleButton
-              value="2"
-              sx={{
-                width: "100%",
-              }}
-            >
-              2
-            </ToggleButton>
-            <ToggleButton
-              value="3"
-              sx={{
-                width: "100%",
-              }}
-            >
-              3
-            </ToggleButton>
-            <ToggleButton
-              value="4"
-              sx={{
-                width: "100%",
-              }}
-            >
-              4
-            </ToggleButton>
-            <ToggleButton
-              value="5"
-              sx={{
-                width: "100%",
-              }}
-            >
-              5
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </div>
+            1
+          </ToggleButton>
+          <ToggleButton
+            value="2"
+            sx={{
+              width: "100%",
+            }}
+          >
+            2
+          </ToggleButton>
+          <ToggleButton
+            value="3"
+            sx={{
+              width: "100%",
+            }}
+          >
+            3
+          </ToggleButton>
+          <ToggleButton
+            value="4"
+            sx={{
+              width: "100%",
+            }}
+          >
+            4
+          </ToggleButton>
+          <ToggleButton
+            value="5"
+            sx={{
+              width: "100%",
+            }}
+          >
+            5
+          </ToggleButton>
+        </ToggleButtonGroup>
       </div>
+    </div>
   );
 }
 

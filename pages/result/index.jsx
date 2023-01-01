@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Chart from "../../components/Chart";
 import styles from "../../styles/Result.module.css";
@@ -18,6 +18,8 @@ const theme = createTheme({
 });
 
 function index() {
+  const [showTroll, setShowTroll] = useState(true);
+
   return (
     <>
       <div className={homeStyles.navbar}>
@@ -59,7 +61,20 @@ function index() {
               </Button>
             </div>
 
-            <div className={styles.tile}>a</div>
+            <div
+              className={styles.tile}
+              style={{
+                aspectRatio: "1.6/1",
+                overflow: "hidden",
+                // opacity: "0",
+              }}
+              onClick={() => {
+                setShowTroll(false);
+              }}
+            >
+              <Image src="/trollgif.gif" fill></Image>
+              {showTroll && <Image src="/scampik.jpeg" fill></Image>}
+            </div>
           </div>
         </ThemeProvider>
       </div>
