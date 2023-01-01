@@ -1,9 +1,22 @@
 import Head from "next/head";
 import Image from "next/image";
-
+import Button from "@mui/material/Button";
 import styles from "../styles/Home.module.css";
 import Subject from "../components/Subject";
 import { useState } from "react";
+
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#673ab7",
+    },
+    success: {
+      main: "rgba(105, 199, 44)",
+    },
+  },
+});
 
 export default function Home() {
   const [infoArray, setInfoArray] = useState([
@@ -57,50 +70,61 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>GPA Calculator</title>
         <meta name="description" content="Simple GPA calculator" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.navbar}>
-          <div className={styles.logoContainer}>
-            <div className={styles.logo}>
-              <Image src="logo.svg" fill />
-            </div>
-          </div>
-        </div>
-        <div className={styles.container}>
-          <div className={styles.heading}>
-            <div style={{ height: "0.5rem", backgroundColor: "#673ab7" }}></div>
-            <div style={{ padding: "1.5rem", fontSize: "24pt" }}>
-              <div>
-                {finalGPA === "NaN" || finalGPA === 0
-                  ? "Enter your grades"
-                  : `Calculated GPA is ${finalGPA}`}
-              </div>
-              <div style={{ fontSize: "11pt", marginTop: "1rem" }}>
-                A simple way to calculate you GPA
+      <ThemeProvider theme={theme}>
+        <main className={styles.main}>
+          <div className={styles.navbar}>
+            <div className={styles.logoContainer}>
+              <div className={styles.logo}>
+                <Image src="logo.svg" fill />
               </div>
             </div>
           </div>
-          <div className={styles.contentWrapper}>
-            {infoArray.map((ele, ind) => {
-              return (
-                <Subject
-                  onUpdate={(newData) => {
-                    onUpdateHandler(ind, newData);
-                  }}
-                  key={ind}
-                  data={infoArray[ind]}
-                />
-              );
-            })}
+          <div className={styles.container}>
+            <div className={styles.heading}>
+              <div
+                style={{ height: "0.5rem", backgroundColor: "#673ab7" }}
+              ></div>
+              <div style={{ padding: "1.5rem", fontSize: "24pt" }}>
+                <div>
+                  {finalGPA === "NaN" || finalGPA === 0
+                    ? "Enter your grades"
+                    : `Calculated GPA is ${finalGPA}`}
+                </div>
+                <div style={{ fontSize: "11pt", marginTop: "1rem" }}>
+                  A simple way to calculate you GPA
+                </div>
+              </div>
+            </div>
+            <div className={styles.contentWrapper}>
+              {infoArray.map((ele, ind) => {
+                return (
+                  <Subject
+                    onUpdate={(newData) => {
+                      onUpdateHandler(ind, newData);
+                    }}
+                    key={ind}
+                    data={infoArray[ind]}
+                  />
+                );
+              })}
+            </div>
+            <div className={styles.submitButtonContainer}>
+              <Button
+                href="/result"
+                variant="contained"
+                className={styles.submitButton}
+              >
+                Submit
+              </Button>
+            </div>
           </div>
-        </div>
-
-      </main>
-
+        </main>
+      </ThemeProvider>
     </>
   );
 }

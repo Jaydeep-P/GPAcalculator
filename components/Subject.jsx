@@ -3,19 +3,10 @@ import styles from "../styles/Subject.module.css";
 import { Slider } from "@mui/material";
 // import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import MuiToggleButton from "@mui/material/ToggleButton";
 import { styled } from "@mui/material/styles";
 
-const theme = createTheme({
-  palette: {
-    success: {
-      main: "rgba(105, 199, 44)",
-      secondary: "#000",
-    },
-  },
-});
 
 const marks = [
   { value: 1, label: "F" },
@@ -52,13 +43,12 @@ function Subject(props) {
       color: "white",
       backgroundColor:
         props.data.credit == 0 || props.data.grade == 0
-          ? "rgba(25, 118, 210,0.8)"
-          : "rgb(105, 199, 44,0.8)",
+          ? "rgba(103, 58, 183,0.8)"
+          : "rgba(105, 199, 44,0.8)",
     },
   });
 
   return (
-    <ThemeProvider theme={theme}>
       <div
         className={styles.container}
         style={
@@ -147,7 +137,6 @@ function Subject(props) {
           </ToggleButtonGroup>
         </div>
       </div>
-    </ThemeProvider>
   );
 }
 
