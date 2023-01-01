@@ -57,8 +57,11 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="Simple GPA calculator" />
+        <title>GPA calculator</title>
+        <meta
+          name="description"
+          content="Simple GPA calculator made for SRM students."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
