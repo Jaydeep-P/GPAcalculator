@@ -70,11 +70,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>GPA calculator</title>
-        <meta
-          name="description"
-          content="Simple GPA calculator made for SRM students."
-        />
+        <title>GPA Calculator</title>
+        <meta name="description" content="Simple GPA calculator" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
