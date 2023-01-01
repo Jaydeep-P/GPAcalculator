@@ -110,15 +110,27 @@ export default function Chart() {
           bottom: 0,
         }}
       >
+        <defs>
+          <linearGradient id="colorPercentage" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.2} />
+            <stop offset="95%" stopColor="#8884d8" stopOpacity={0.9} />
+          </linearGradient>
+        </defs>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="gpa" />
         <YAxis />
-        {/* <Tooltip /> */}
-        <Area
+        {/* <Area
           type="monotone"
           dataKey="percentage"
           stroke="#8884d8"
           fill="#8884d8"
+        /> */}
+        <Area
+          type="monotone"
+          dataKey="percentage"
+          stroke="#8884d8"
+          fillOpacity={1}
+          fill="url(#colorPercentage)"
         />
       </AreaChart>
     </ResponsiveContainer>
