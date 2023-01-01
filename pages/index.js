@@ -70,7 +70,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
         <div className={styles.container}>
           <div className={styles.heading}>
             <div style={{ height: "0.5rem", backgroundColor: "#673ab7" }}></div>
@@ -99,7 +98,9 @@ export default function Home() {
             })}
           </div>
         </div>
+
       </main>
+
     </>
   );
 }
