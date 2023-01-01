@@ -35,30 +35,28 @@ function index() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <ThemeProvider theme={theme}>
-          <div>
-            <div className={styles.container}>
-              <div className={styles.tile} style={{ height: "10rem" }}>
-                <div className={styles.gpaContainer}>
-                  Your Gpa is <div style={{ fontSize: "5rem" }}>9.9</div>
-                </div>
+          <div className={styles.container}>
+            <div className={styles.tile} style={{ height: "10rem" }}>
+              <div className={styles.gpaContainer}>
+                Your Gpa is <div style={{ fontSize: "5rem" }}>9.9</div>
               </div>
-              <div className={styles.tile} style={{ flexDirection: "column" }}>
-                <div className={styles.chartContainer}>
-                  <Chart />
-                </div>
-                <div className={styles.rankContainer}>
-                  Your score is above 50%
-                </div>
+            </div>
+            <div className={styles.tile} style={{ flexDirection: "column" }}>
+              <div className={styles.chartContainer}>
+                <Chart />
               </div>
-              <div className={styles.backButtonContainer}>
-                <Button
-                  href="/"
-                  variant="contained"
-                  className={styles.backButton}
-                >
-                  Back
-                </Button>
+              <div className={styles.rankContainer}>
+                Your score is above 50%
               </div>
+            </div>
+            <div className={styles.backButtonContainer}>
+              <Button
+                href="/"
+                variant="contained"
+                className={styles.backButton}
+              >
+                Back
+              </Button>
             </div>
           </div>
         </ThemeProvider>
