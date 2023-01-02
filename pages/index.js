@@ -81,6 +81,18 @@ export default function Home() {
     // let percent = (gpa * 10).toFixed(0);
   };
 
+  ///testing
+
+  let data = fetch("/api/user", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: "hi",
+  });
+
+  ///testing
+
   return (
     <>
       <Head>
@@ -89,6 +101,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div></div>
       <ThemeProvider theme={theme}>
         <main className={styles.main}>
           <div className={styles.navbar}>
