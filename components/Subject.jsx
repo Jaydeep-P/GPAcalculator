@@ -6,6 +6,7 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 import MuiToggleButton from "@mui/material/ToggleButton";
 import { styled } from "@mui/material/styles";
+import { useState, useEffect } from "react";
 
 const marks = [
   { value: 1, label: "F" },
@@ -22,17 +23,24 @@ function valuetext(value) {
 }
 
 function Subject(props) {
-  const [alignment, setAlignment] = React.useState(3);
+  const [credit, setCredit] = useState(0);
+  const [grade, setGrade] = useState(0);
 
-  const handleChange = (event, newAlignment) => {
-    if (newAlignment == null) {
-      newAlignment = 0;
+  useEffect(() => {
+    setCredit(props.data.credit);
+    setGrade(props.data.grade);
+  }, [props.data]);
+
+  const handleButtonChange = (event, newCredit) => {
+    if (newCredit == null) {
+      newCredit = 0;
     }
-    setAlignment(newAlignment);
-    props.onUpdate({ ...props.data, credit: newAlignment });
+    setCredit(newCredit);
+    props.onUpdate({ ...props.data, credit: newCredit });
   };
 
   const handleSliderChange = (event, newValue) => {
+    setGrade(newValue);
     props.onUpdate({ ...props.data, grade: newValue });
   };
 
@@ -40,7 +48,7 @@ function Subject(props) {
     "&.Mui-selected, &.Mui-selected:hover": {
       color: "white",
       backgroundColor:
-        props.data.credit == 0 || props.data.grade == 0
+        credit == 0 || grade == 0
           ? "rgba(103, 58, 183,0.8)"
           : "rgba(105, 199, 44,0.8)",
     },
@@ -50,7 +58,7 @@ function Subject(props) {
     <div
       className={styles.container}
       style={
-        props.data.credit == 0 || props.data.grade == 0
+        credit == 0 || grade == 0
           ? {}
           : {
               outline: "1px solid rgba(192, 217, 174, 1)",
@@ -60,17 +68,11 @@ function Subject(props) {
     >
       <div className={styles.sliderConatiner}>
         <Slider
-          color={
-            props.data.credit == 0 || props.data.grade == 0
-              ? "primary"
-              : "success"
-          }
+          color={credit == 0 || grade == 0 ? "primary" : "success"}
           aria-label="Restricted values"
-          defaultValue={0}
-          //   valueLabelFormat={valueLabelFormat}
+          value={grade}
           getAriaValueText={valuetext}
           step={1}
-          //   valueLabelDisplay="auto"
           marks={marks}
           onChange={handleSliderChange}
           min={1}
@@ -79,14 +81,10 @@ function Subject(props) {
       </div>
       <div className={styles.creditContainer}>
         <ToggleButtonGroup
-          color={
-            props.data.credit == 0 || props.data.grade == 0
-              ? "primary"
-              : "success"
-          }
-          value={alignment}
+          color={credit == 0 || grade == 0 ? "primary" : "success"}
+          value={`${credit}`}
           exclusive
-          onChange={handleChange}
+          onChange={handleButtonChange}
           aria-label="Platform"
           sx={{
             width: "100%",

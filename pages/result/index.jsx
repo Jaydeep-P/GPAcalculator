@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Chart from "../../components/Chart";
 import styles from "../../styles/Result.module.css";
@@ -19,13 +19,23 @@ const theme = createTheme({
 
 function index() {
   const [showTroll, setShowTroll] = useState(true);
+  const [gpa, setGPA] = useState("...");
+
+  useEffect(() => {
+    let gpa = localStorage.getItem("gpa");
+    if (gpa == "NaN" || gpa == null) {
+      gpa = 0;
+    }
+
+    setGPA(gpa);
+  }, []);
 
   return (
     <>
       <div className={homeStyles.navbar}>
         <div className={homeStyles.logoContainer}>
           <div className={homeStyles.logo}>
-            <Image src="logo.svg" fill />
+            <Image src="logo.svg" fill alt="SRM logo" />
           </div>
         </div>
       </div>
@@ -40,7 +50,7 @@ function index() {
           <div className={styles.container}>
             <div className={styles.tile} style={{ height: "10rem" }}>
               <div className={styles.gpaContainer}>
-                Your Gpa is <div style={{ fontSize: "5rem" }}>9.9</div>
+                Your Gpa is <div style={{ fontSize: "5rem" }}>{gpa}</div>
               </div>
             </div>
             <div className={styles.tile} style={{ flexDirection: "column" }}>
@@ -66,14 +76,15 @@ function index() {
               style={{
                 aspectRatio: "1.6/1",
                 overflow: "hidden",
-                // opacity: "0",
               }}
               onClick={() => {
                 setShowTroll(false);
               }}
             >
-              <Image src="/trollgif.gif" fill></Image>
-              {showTroll && <Image src="/scampik.jpeg" fill></Image>}
+              <Image src="/trollgif.gif" fill alt="Rick astley"></Image>
+              {showTroll && (
+                <Image src="/scampik.jpeg" fill alt="spoiler"></Image>
+              )}
             </div>
           </div>
         </ThemeProvider>

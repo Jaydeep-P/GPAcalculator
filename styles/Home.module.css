@@ -56,4 +56,9 @@
   margin-block: 1rem;
   width: 100%;
   display: flex;
+  justify-content: space-between;
+}
+
+.clearButton, .submitButton{
+  width:6rem;
 }

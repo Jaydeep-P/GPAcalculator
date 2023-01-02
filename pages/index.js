@@ -7,6 +7,18 @@ import { useState, useEffect, use, useDebugValue } from "react";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+let defaultArray = [
+  { grade: 0, credit: 0 },
+  { grade: 0, credit: 0 },
+  { grade: 0, credit: 0 },
+  { grade: 0, credit: 0 },
+  { grade: 0, credit: 0 },
+  { grade: 0, credit: 0 },
+  { grade: 0, credit: 0 },
+  { grade: 0, credit: 0 },
+  { grade: 0, credit: 0 },
+];
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -19,30 +31,19 @@ const theme = createTheme({
 });
 
 export default function Home() {
-  const [infoArray, setInfoArray] = useState([
-    { grade: 0, credit: 0 },
-    { grade: 0, credit: 0 },
-    { grade: 0, credit: 0 },
-    { grade: 0, credit: 0 },
-    { grade: 0, credit: 0 },
-    { grade: 0, credit: 0 },
-    { grade: 0, credit: 0 },
-    { grade: 0, credit: 0 },
-    { grade: 0, credit: 0 },
-  ]);
-  const [finalGPA, setGPA] = useState(0);
+  const [infoArray, setInfoArray] = useState(defaultArray);
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("items"));
-    if (items) {
+    if (items && items.length > 4 && items != defaultArray) {
       setInfoArray(items);
-      console.log(items);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(infoArray));
-    console.log(localStorage.items);
+    if (infoArray && infoArray.length > 0 && infoArray != defaultArray) {
+      localStorage.setItem("items", JSON.stringify(infoArray));
+    }
   }, [infoArray]);
 
   const onUpdateHandler = (ind, newData) => {
@@ -76,8 +77,8 @@ export default function Home() {
       points += credit * gradept;
     }
     let gpa = points / sum_credits;
-    setGPA(gpa.toFixed(2));
-    let percent = (gpa * 10).toFixed(0);
+    localStorage.setItem("gpa", gpa.toFixed(2));
+    // let percent = (gpa * 10).toFixed(0);
   };
 
   return (
@@ -93,7 +94,7 @@ export default function Home() {
           <div className={styles.navbar}>
             <div className={styles.logoContainer}>
               <div className={styles.logo}>
-                <Image src="logo.svg" fill />
+                <Image src="logo.svg" fill alt="SRM logo" />
               </div>
             </div>
           </div>
@@ -103,11 +104,7 @@ export default function Home() {
                 style={{ height: "0.5rem", backgroundColor: "#673ab7" }}
               ></div>
               <div style={{ padding: "1.5rem", fontSize: "24pt" }}>
-                <div>
-                  {finalGPA === "NaN" || finalGPA === 0
-                    ? "Enter your grades"
-                    : `Calculated GPA is ${finalGPA}`}
-                </div>
+                <div>Enter your grades</div>
                 <div style={{ fontSize: "11pt", marginTop: "1rem" }}>
                   A simple way to calculate you GPA
                 </div>
@@ -122,10 +119,12 @@ export default function Home() {
                     }}
                     key={ind}
                     data={infoArray[ind]}
+                    index={ind}
                   />
                 );
               })}
             </div>
+
             <div className={styles.submitButtonContainer}>
               <Button
                 href="/result"
@@ -133,6 +132,17 @@ export default function Home() {
                 className={styles.submitButton}
               >
                 Submit
+              </Button>
+              <Button
+                className={styles.clearButton}
+                onClick={(e) => {
+                  e.preventDefault();
+                  localStorage.setItem("items", JSON.stringify(defaultArray));
+                  localStorage.setItem("gpa", 0);
+                  setInfoArray([...defaultArray]);
+                }}
+              >
+                Clear
               </Button>
             </div>
           </div>
