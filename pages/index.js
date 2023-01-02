@@ -130,8 +130,20 @@ export default function Home() {
                 href="/result"
                 variant="contained"
                 className={styles.submitButton}
+                onClick={(e) => {
+                  JSON.stringify(defaultArray) === JSON.stringify(infoArray) &&
+                    e.preventDefault();
+                }}
+                style={
+                  JSON.stringify(defaultArray) === JSON.stringify(infoArray)
+                    ? {
+                        backgroundColor: "rgb(209, 209, 209)",
+                        color: "rgb(155, 155, 155)",
+                      }
+                    : {}
+                }
               >
-                Submit
+                SUBMIT
               </Button>
               <Button
                 className={styles.clearButton}

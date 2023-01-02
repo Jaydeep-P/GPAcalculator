@@ -52,6 +52,13 @@
 }
 
 .backButton {
-  width:6rem;
-  
+  width: 6rem;
+}
+
+/* ------------------------- */
+
+.spoilerImage {
+  vertical-align: bottom;
+  filter: blur(10px) grayscale(30%);
+  transition: 0.3s;
 }

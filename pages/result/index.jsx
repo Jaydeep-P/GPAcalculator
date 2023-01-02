@@ -82,10 +82,22 @@ function index() {
               }}
             >
               {!showTroll && (
-                <Image src="/trollgif.gif" fill alt="Rick astley"></Image>
+                // <Image src="/trollgif.gif" fill alt="Rick astley"></Image>
+                <video autoPlay muted height="100%">
+                  <source src="/rik.mp4" type="video/mp4" />
+                  Sorry, your browser doesn't support videos.
+                </video>
               )}
               {showTroll && (
-                <Image src="/scampik.jpeg" fill alt="spoiler"></Image>
+                <div>
+                  <Image
+                    fill
+                    src="/cutecat.jpg"
+                    alt="SPOILER"
+                    className={styles.spoilerImage}
+                  />
+                  click to see
+                </div>
               )}
             </div>
           </div>
