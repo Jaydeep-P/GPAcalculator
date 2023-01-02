@@ -56,9 +56,23 @@
 }
 
 /* ------------------------- */
+.spoilerContainer{
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
 
-.spoilerImage {
-  vertical-align: bottom;
-  filter: blur(10px) grayscale(30%);
-  transition: 0.3s;
+
+.spoiler{
+  padding :1rem;
+  border-radius: 5rem;
+  position: absolute;
+  font-size: 1rem;
+  font-weight: bold;
+  width: fit-content;
+  background-color: #535458;
+  box-shadow: #535458 0 0 10px ;
+  color: rgb(255, 255, 255);
 }

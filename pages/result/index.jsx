@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Chart from "../../components/Chart";
 import styles from "../../styles/Result.module.css";
@@ -20,6 +20,8 @@ const theme = createTheme({
 function index() {
   const [showTroll, setShowTroll] = useState(true);
   const [gpa, setGPA] = useState("...");
+
+  const videoRef = useRef();
 
   useEffect(() => {
     let gpa = localStorage.getItem("gpa");
@@ -75,28 +77,24 @@ function index() {
               className={styles.tile}
               style={{
                 aspectRatio: "1.6/1",
+                padding: 0,
                 overflow: "hidden",
               }}
               onClick={() => {
+                console.log(videoRef);
+
+                videoRef.current.play();
                 setShowTroll(false);
               }}
             >
-              {!showTroll && (
-                // <Image src="/trollgif.gif" fill alt="Rick astley"></Image>
-                <video autoPlay muted height="100%">
-                  <source src="/rik.mp4" type="video/mp4" />
-                  Sorry, your browser doesn't support videos.
-                </video>
-              )}
+              <video height="100%" ref={videoRef}>
+                <source src="/short.mp4" type="video/mp4" />
+                Sorry, your browser doesn't support videos.
+              </video>
               {showTroll && (
-                <div>
-                  <Image
-                    fill
-                    src="/cutecat.jpg"
-                    alt="SPOILER"
-                    className={styles.spoilerImage}
-                  />
-                  click to see
+                <div className={styles.spoilerContainer}>
+                  <Image fill src="/cutecat.jpg" alt="SPOILER" />
+                  <div className={styles.spoiler}>Click me</div>
                 </div>
               )}
             </div>
