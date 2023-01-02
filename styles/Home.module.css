@@ -62,3 +62,12 @@
 .clearButton, .submitButton{
   width:6rem;
 }
+
+
+@media only screen and (max-width: 600px){
+	/*Big smartphones [426px -> 600px]*/
+  .contentWrapper{
+    gap: 2rem;
+  }
+  
+}

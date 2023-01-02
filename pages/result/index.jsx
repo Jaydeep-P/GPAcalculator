@@ -81,7 +81,9 @@ function index() {
                 setShowTroll(false);
               }}
             >
-              <Image src="/trollgif.gif" fill alt="Rick astley"></Image>
+              {!showTroll && (
+                <Image src="/trollgif.gif" fill alt="Rick astley"></Image>
+              )}
               {showTroll && (
                 <Image src="/scampik.jpeg" fill alt="spoiler"></Image>
               )}
