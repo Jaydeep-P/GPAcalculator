@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap");
+
 .main {
   display: flex;
   background-color: #efecf8;
@@ -12,7 +14,6 @@
   max-width: 800px;
   padding: 1rem;
   margin-bottom: 2rem;
-
 }
 
 .contentWrapper {
@@ -26,7 +27,6 @@
   padding: 1rem;
   border-radius: 5px;
   outline: 1px #dadce0 solid;
-  
 }
 
 .heading {
@@ -39,7 +39,7 @@
 }
 
 .navbar {
-  height: 5rem;
+  height: 4rem;
   width: 100%;
   outline: 1px #dadce0 solid;
   background-color: white;
@@ -52,7 +52,31 @@
 .logo {
   position: relative;
   height: 100%;
-  aspect-ratio: 3/1;
+  /* aspect-ratio: 3/1; */
+  display: flex;
+}
+
+.lhsLogo {
+  position: relative;
+  aspect-ratio: 1/1.2;
+  margin-right: 0.5rem;
+  border-radius: 10px;
+}
+
+.rhsLogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Comfortaa", cursive;
+}
+
+.rhsLogoTop {
+  font-size: 1.5rem;
+}
+
+.rhsLogoBottom {
+  font-size: 0.45rem;
 }
 
 .submitButtonContainer {
@@ -62,15 +86,14 @@
   justify-content: space-between;
 }
 
-.clearButton, .submitButton{
-  width:6rem;
+.clearButton,
+.submitButton {
+  width: 6rem;
 }
 
-
-@media only screen and (max-width: 600px){
-	/*Big smartphones [426px -> 600px]*/
-  .contentWrapper{
+@media only screen and (max-width: 600px) {
+  /*Big smartphones [426px -> 600px]*/
+  .contentWrapper {
     gap: 2rem;
   }
-  
 }

@@ -98,7 +98,13 @@ export default function Home() {
           <div className={styles.navbar}>
             <div className={styles.logoContainer}>
               <div className={styles.logo}>
-                <Image src="logo.svg" fill alt="SRM logo" />
+                <div className={styles.lhsLogo}>
+                  <Image src="/logo.png" fill alt="Image logo" />
+                </div>
+                <div className={styles.rhsLogo}>
+                  <div className={styles.rhsLogoTop}>GPA</div>
+                  <div className={styles.rhsLogoBottom}>CALCULATOR</div>
+                </div>
               </div>
             </div>
           </div>
