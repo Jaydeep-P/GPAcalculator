@@ -61,7 +61,7 @@ export default async function handler(req, res) {
       let result = await db
         .collection("graphPoints")
         .updateOne({ bucketIndex: bucket }, { $inc: { numPeople: 1 } });
-      console.log(bucket, result);
+      // console.log(bucket, result);
       res.json({ result: "ok" });
 
       break;

@@ -4,7 +4,8 @@ import { useRouter } from "next/router";
 import Button from "@mui/material/Button";
 import styles from "../styles/Home.module.css";
 import Subject from "../components/Subject";
-import { useState, useEffect, use, useDebugValue } from "react";
+import { useState, useEffect } from "react";
+import Footer from "components/Footer";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -154,8 +155,8 @@ export default function Home() {
                         ),
                       }),
                     });
-                    let json = await data.json();
-                    console.log(json);
+                    // let json = await data.json();
+                    // console.log(json);
                   }
                   await sendData();
                   router.push("/result");
@@ -185,6 +186,7 @@ export default function Home() {
             </div>
           </div>
         </main>
+        <Footer />
       </ThemeProvider>
     </>
   );

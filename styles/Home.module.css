@@ -11,6 +11,8 @@
   width: 100%;
   max-width: 800px;
   padding: 1rem;
+  margin-bottom: 2rem;
+
 }
 
 .contentWrapper {
@@ -24,6 +26,7 @@
   padding: 1rem;
   border-radius: 5px;
   outline: 1px #dadce0 solid;
+  
 }
 
 .heading {
@@ -43,7 +46,7 @@
 }
 
 .logoContainer {
-  padding: 1rem;
+  padding: 0.5rem;
   height: 100%;
 }
 .logo {

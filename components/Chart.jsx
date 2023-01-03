@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {
-  AreaChart,
   Area,
   XAxis,
   YAxis,
   Bar,
   CartesianGrid,
   ComposedChart,
-  Tooltip,
   ResponsiveContainer,
 } from "recharts";
 
@@ -100,6 +98,7 @@ const defaultData = [
 
 export default function Chart() {
   const [data, setData] = useState(defaultData);
+  const [mx, setMx] = useState(10);
 
   useEffect(() => {
     (async function () {
@@ -113,14 +112,14 @@ export default function Chart() {
         0
       );
 
-      // console.log(mine);
+      let maximum = 0;
       for (let i = 0; i < rawData.length; i++) {
         let el = {};
         if (rawData[i].bucketIndex % 5 == 0) {
           el.gpa = rawData[i].bucketIndex / 5 + 5.0;
         }
         el.people = ((rawData[i].numPeople / total) * 100).toFixed(2);
-
+        maximum = Math.max(maximum, el.people);
         rawData[i] = el;
       }
 
@@ -129,7 +128,12 @@ export default function Chart() {
       let mine = rawData[bucket].people;
 
       rawData[bucket] = { ...rawData[bucket], mine };
+      // console.log(rawData);
 
+      //putting maximum to something evenly divisible by 5
+      maximum += 5.0 - (maximum % 5.0);
+
+      setMx(maximum);
       setData(rawData);
     })();
   }, []);
@@ -138,7 +142,7 @@ export default function Chart() {
     <ResponsiveContainer width="100%" height="100%">
       <ComposedChart
         width={500}
-        height={400}
+        height={800}
         data={data}
         margin={{
           top: 10,
@@ -150,16 +154,13 @@ export default function Chart() {
         <defs>
           <linearGradient id="colorpeople" x1="0" y1="0" x2="0" y2="1">
             <stop offset="5%" stopColor="#8884d8" stopOpacity={0.2} />
-            <stop offset="95%" stopColor="#8884d8" stopOpacity={0.9} />
-          </linearGradient>
-          <linearGradient id="colorpeopleorange" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#ff7300" stopOpacity={1} />
-            <stop offset="95%" stopColor="#ff7300" stopOpacity={1} />
+            <stop offset="95%" stopColor="#8884d8" stopOpacity={0.8} />
           </linearGradient>
         </defs>
         <CartesianGrid strokeDasharray="5 5" />
         <XAxis dataKey="gpa" />
-        <YAxis />
+        <YAxis domain={[0, mx]} />
+
         <Area
           type="monotone"
           dataKey="people"
@@ -167,7 +168,8 @@ export default function Chart() {
           fillOpacity={1}
           fill="url(#colorpeople)"
         />
-        <Bar dataKey="mine" barSize={2} fill="url(#colorpeopleorange)" />
+
+        <Bar dataKey="mine" barSize={2} fill="#f10" />
       </ComposedChart>
     </ResponsiveContainer>
   );

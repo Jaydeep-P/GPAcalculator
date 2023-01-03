@@ -6,6 +6,7 @@ import homeStyles from "../../styles/Home.module.css";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Head from "next/head";
+import Footer from "components/Footer";
 const theme = createTheme({
   palette: {
     primary: {
@@ -77,7 +78,7 @@ function index() {
                 overflow: "hidden",
               }}
               onClick={() => {
-                console.log(videoRef);
+                // console.log(videoRef);
 
                 videoRef.current.play();
                 setShowTroll(false);
@@ -95,6 +96,7 @@ function index() {
               )}
             </div>
           </div>
+          <Footer troll={!showTroll} />
         </ThemeProvider>
       </div>
     </>
