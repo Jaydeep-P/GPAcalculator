@@ -28,7 +28,6 @@ function index() {
     if (gpa == "NaN" || gpa == null) {
       gpa = 0;
     }
-
     setGPA(gpa);
   }, []);
 
@@ -58,9 +57,6 @@ function index() {
             <div className={styles.tile} style={{ flexDirection: "column" }}>
               <div className={styles.chartContainer}>
                 <Chart />
-              </div>
-              <div className={styles.rankContainer}>
-                Your score is above 50%
               </div>
             </div>
             <div className={styles.backButtonContainer}>

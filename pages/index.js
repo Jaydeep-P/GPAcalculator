@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import Button from "@mui/material/Button";
 import styles from "../styles/Home.module.css";
 import Subject from "../components/Subject";
@@ -31,6 +32,7 @@ const theme = createTheme({
 });
 
 export default function Home() {
+  const router = useRouter();
   const [infoArray, setInfoArray] = useState(defaultArray);
 
   useEffect(() => {
@@ -44,10 +46,6 @@ export default function Home() {
     if (infoArray && infoArray.length > 0 && infoArray != defaultArray) {
       localStorage.setItem("items", JSON.stringify(infoArray));
     }
-
-    ///testing
-
-    ///testing
   }, [infoArray]);
 
   const onUpdateHandler = (ind, newData) => {
@@ -135,11 +133,14 @@ export default function Home() {
                 href="/result"
                 variant="contained"
                 className={styles.submitButton}
-                onClick={(e) => {
-                  // JSON.stringify(defaultArray) === JSON.stringify(infoArray) &&
+                onClick={async (e) => {
                   e.preventDefault();
-
-                  (async function () {
+                  if (
+                    JSON.stringify(defaultArray) === JSON.stringify(infoArray)
+                  ) {
+                    return;
+                  }
+                  async function sendData() {
                     let data = await fetch("/api/user", {
                       method: "POST",
                       headers: {
@@ -154,8 +155,10 @@ export default function Home() {
                       }),
                     });
                     let json = await data.json();
-                    console.log(JSON.stringify(json));
-                  })();
+                    console.log(json);
+                  }
+                  await sendData();
+                  router.push("/result");
                 }}
                 style={
                   JSON.stringify(defaultArray) === JSON.stringify(infoArray)
