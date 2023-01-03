@@ -23,7 +23,7 @@ let defaultArray = [
 
 const theme = createTheme({
   palette: {
-    primary: {
+    primary: {  
       main: "#673ab7",
     },
     success: {
