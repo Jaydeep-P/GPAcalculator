@@ -1,18 +1,19 @@
-import { getUsers } from "lib/mongo/users";
+import clientPromise from "/lib/mongo/index.js";
 
-const handler = async (req, res) => {
-  if (req.method === "POST") {
-    try {
-      // const { users, error } = await getUsers();
-      // if (error) throw new Error(error);
-      return res.status(200).json({ ...req });
-    } catch (error) {
-      return res.status(500).json({ error: "oops" });
-    }
+export default async function handler(req, res) {
+  const client = await clientPromise;
+  const db = client.db("cluster");
+
+  switch (req.method) {
+    case "POST":
+      console.log("HELLO----------------------------");
+      let bodyObject = JSON.parse(req.body);
+      let myPost = await db.collection("users").find();
+      res.json(myPost);
+      break;
+    case "GET":
+      const allPosts = await db.collection("allPosts").find({}).toArray();
+      res.json({ status: 200, data: allPosts });
+      break;
   }
-
-  res.setHeader("Allow", ["POST"]);
-  res.status(425).end("method not allowed");
-};
-
-export default handler;
+}

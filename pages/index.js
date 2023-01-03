@@ -44,6 +44,22 @@ export default function Home() {
     if (infoArray && infoArray.length > 0 && infoArray != defaultArray) {
       localStorage.setItem("items", JSON.stringify(infoArray));
     }
+
+    ///testing
+
+    (async function () {
+      let data = await fetch("/api/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(infoArray[0]),
+      });
+      let json = await data.json();
+      console.log(JSON.stringify(json));
+    })();
+
+    ///testing
   }, [infoArray]);
 
   const onUpdateHandler = (ind, newData) => {
@@ -80,18 +96,6 @@ export default function Home() {
     localStorage.setItem("gpa", gpa.toFixed(2));
     // let percent = (gpa * 10).toFixed(0);
   };
-
-  ///testing
-
-  let data = fetch("/api/user", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: "hi",
-  });
-
-  ///testing
 
   return (
     <>
