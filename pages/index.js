@@ -145,7 +145,13 @@ export default function Home() {
                       headers: {
                         "Content-Type": "application/json",
                       },
-                      body: JSON.stringify(infoArray),
+                      body: JSON.stringify({
+                        infoArray,
+                        gpa: localStorage.getItem("gpa"),
+                        bucket: Math.round(
+                          (localStorage.getItem("gpa") - 5.0) / 0.2
+                        ),
+                      }),
                     });
                     let json = await data.json();
                     console.log(JSON.stringify(json));
