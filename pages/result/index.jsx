@@ -2,11 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Chart from "../../components/Chart";
 import styles from "../../styles/Result.module.css";
-import homeStyles from "../../styles/Home.module.css";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Head from "next/head";
 import Footer from "components/Footer";
+import Navbar from "components/Navbar";
 const theme = createTheme({
   palette: {
     primary: {
@@ -34,13 +34,7 @@ function index() {
 
   return (
     <>
-      <div className={homeStyles.navbar}>
-        <div className={homeStyles.logoContainer}>
-          <div className={homeStyles.logo}>
-            <Image src="logo.svg" fill alt="SRM logo" />
-          </div>
-        </div>
-      </div>
+      <Navbar />
       <div className={styles.wrapper}>
         <Head>
           <title>GPA Calculator</title>

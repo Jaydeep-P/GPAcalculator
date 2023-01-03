@@ -159,7 +159,12 @@ export default function Chart() {
         </defs>
         <CartesianGrid strokeDasharray="5 5" />
         <XAxis dataKey="gpa" />
-        <YAxis domain={[0, mx]} />
+        <YAxis
+          domain={[0, mx]}
+          tickCount={5}
+          interval={0}
+          tickFormatter={(s) => `${s}%`}
+        />
 
         <Area
           type="monotone"
