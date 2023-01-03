@@ -47,18 +47,6 @@ export default function Home() {
 
     ///testing
 
-    (async function () {
-      let data = await fetch("/api/user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(infoArray[0]),
-      });
-      let json = await data.json();
-      console.log(JSON.stringify(json));
-    })();
-
     ///testing
   }, [infoArray]);
 
@@ -148,8 +136,20 @@ export default function Home() {
                 variant="contained"
                 className={styles.submitButton}
                 onClick={(e) => {
-                  JSON.stringify(defaultArray) === JSON.stringify(infoArray) &&
-                    e.preventDefault();
+                  // JSON.stringify(defaultArray) === JSON.stringify(infoArray) &&
+                  e.preventDefault();
+
+                  (async function () {
+                    let data = await fetch("/api/user", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify(infoArray),
+                    });
+                    let json = await data.json();
+                    console.log(JSON.stringify(json));
+                  })();
                 }}
                 style={
                   JSON.stringify(defaultArray) === JSON.stringify(infoArray)
