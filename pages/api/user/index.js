@@ -6,12 +6,23 @@ export default async function handler(req, res) {
 
   switch (req.method) {
     case "POST":
-      const ip = req.headers["x-real-ip"] || req.connection.remoteAddress;
       let infoArray = req.body.infoArray;
       let gpa = req.body.gpa;
       let time = await Date.now();
       let bucket = req.body.bucket;
+
+      let ip;
+      if (req.headers["x-forwarded-for"]) {
+        ip = req.headers["x-forwarded-for"].split(",")[0];
+      } else if (req.headers["x-real-ip"]) {
+        ip = req.socket.remoteAddress;
+      } else {
+        ip = req.socket.remoteAddress;
+      }
+
       const inObject = { ip, infoArray, time, gpa };
+
+      console.log(JSON.stringify(inObject), JSON.stringify(inObject).length);
 
       // //initializing bucket array
       // const resetArray = [
