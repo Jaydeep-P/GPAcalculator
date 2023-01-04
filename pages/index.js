@@ -23,7 +23,6 @@ let defaultArray = [
   { grade: 0, credit: 0 },
   { grade: 0, credit: 0 },
   { grade: 0, credit: 0 },
-  { grade: 0, credit: 0 },
 ];
 
 const theme = createTheme({
