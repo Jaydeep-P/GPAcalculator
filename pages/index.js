@@ -6,10 +6,15 @@ import styles from "../styles/Home.module.css";
 import Subject from "../components/Subject";
 import { useState, useEffect } from "react";
 import Footer from "components/Footer";
+import Navbar from "components/Navbar";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 let defaultArray = [
+  { grade: 0, credit: 0 },
+  { grade: 0, credit: 0 },
+  { grade: 0, credit: 0 },
+  { grade: 0, credit: 0 },
   { grade: 0, credit: 0 },
   { grade: 0, credit: 0 },
   { grade: 0, credit: 0 },
@@ -95,19 +100,7 @@ export default function Home() {
       <div></div>
       <ThemeProvider theme={theme}>
         <main className={styles.main}>
-          <div className={styles.navbar}>
-            <div className={styles.logoContainer}>
-              <div className={styles.logo}>
-                <div className={styles.lhsLogo}>
-                  <Image src="/logo.png" fill alt="Image logo" />
-                </div>
-                <div className={styles.rhsLogo}>
-                  <div className={styles.rhsLogoTop}>GPA</div>
-                  <div className={styles.rhsLogoBottom}>CALCULATOR</div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Navbar />
           <div className={styles.container}>
             <div className={styles.heading}>
               <div

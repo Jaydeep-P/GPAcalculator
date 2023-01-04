@@ -8,7 +8,11 @@ export default async function handler(req, res) {
     case "GET":
       let bucket = req.body.bucket;
 
-      let graphPoints = await db.collection("graphPoints").find().toArray();
+      let graphPoints = await db
+        .collection("graphPoints")
+        .find()
+        .sort({ bucketIndex: 1 })
+        .toArray();
       // console.log(graphPoints);
       res.json(graphPoints);
 
