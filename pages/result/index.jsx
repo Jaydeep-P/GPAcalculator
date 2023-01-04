@@ -27,7 +27,7 @@ function index() {
   useEffect(() => {
     let gpa = localStorage.getItem("gpa");
     if (gpa == "NaN" || gpa == null) {
-      gpa = 0;
+      gpa = 4.0;
     }
     setGPA(gpa);
   }, []);
