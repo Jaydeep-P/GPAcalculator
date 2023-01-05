@@ -24,7 +24,7 @@ function valuetext(value) {
 
 function Subject(props) {
   const [credit, setCredit] = useState(0);
-  const [grade, setGrade] = useState(0);
+  const [grade, setGrade] = useState(6);
 
   useEffect(() => {
     setCredit(props.data.credit);
@@ -55,82 +55,96 @@ function Subject(props) {
   });
 
   return (
-    <div
-      className={styles.container}
-      style={
-        credit == 0 || grade == 0
-          ? {}
-          : {
-              outline: "1px solid rgba(192, 217, 174, 1)",
-              backgroundColor: "#f4fcf5",
-            }
-      }
-    >
-      <div className={styles.sliderConatiner}>
-        <Slider
-          color={credit == 0 || grade == 0 ? "primary" : "success"}
-          aria-label="Restricted values"
-          value={grade}
-          getAriaValueText={valuetext}
-          step={1}
-          marks={marks}
-          onChange={handleSliderChange}
-          min={1}
-          max={7}
-        />
+    <div className={styles.wrapper}>
+      <div
+        className={styles.serialContainer}
+        style={
+          credit == 0 || grade == 0
+            ? {}
+            : {
+                backgroundColor: "#85d154",
+              }
+        }
+      >
+        {props.index + 1}
       </div>
-      <div className={styles.creditContainer}>
-        <ToggleButtonGroup
-          color={credit == 0 || grade == 0 ? "primary" : "success"}
-          value={`${credit}`}
-          exclusive
-          onChange={handleButtonChange}
-          aria-label="Platform"
-          sx={{
-            width: "100%",
-          }}
-        >
-          <ToggleButton
-            value="1"
+      <div
+        className={styles.container}
+        style={
+          credit == 0 || grade == 0
+            ? {}
+            : {
+                outline: "1px solid rgba(192, 217, 174, 1)",
+                backgroundColor: "#f4fcf5",
+              }
+        }
+      >
+        <div className={styles.sliderConatiner}>
+          <Slider
+            color={credit == 0 || grade == 0 ? "primary" : "success"}
+            aria-label="Restricted values"
+            value={grade}
+            getAriaValueText={valuetext}
+            step={1}
+            marks={marks}
+            onChange={handleSliderChange}
+            min={1}
+            max={7}
+          />
+        </div>
+        <div className={styles.creditContainer}>
+          <ToggleButtonGroup
+            color={credit == 0 || grade == 0 ? "primary" : "success"}
+            value={`${credit}`}
+            exclusive
+            onChange={handleButtonChange}
+            aria-label="Platform"
             sx={{
               width: "100%",
             }}
           >
-            1
-          </ToggleButton>
-          <ToggleButton
-            value="2"
-            sx={{
-              width: "100%",
-            }}
-          >
-            2
-          </ToggleButton>
-          <ToggleButton
-            value="3"
-            sx={{
-              width: "100%",
-            }}
-          >
-            3
-          </ToggleButton>
-          <ToggleButton
-            value="4"
-            sx={{
-              width: "100%",
-            }}
-          >
-            4
-          </ToggleButton>
-          <ToggleButton
-            value="5"
-            sx={{
-              width: "100%",
-            }}
-          >
-            5
-          </ToggleButton>
-        </ToggleButtonGroup>
+            <ToggleButton
+              value="1"
+              sx={{
+                width: "100%",
+              }}
+            >
+              1
+            </ToggleButton>
+            <ToggleButton
+              value="2"
+              sx={{
+                width: "100%",
+              }}
+            >
+              2
+            </ToggleButton>
+            <ToggleButton
+              value="3"
+              sx={{
+                width: "100%",
+              }}
+            >
+              3
+            </ToggleButton>
+            <ToggleButton
+              value="4"
+              sx={{
+                width: "100%",
+              }}
+            >
+              4
+            </ToggleButton>
+            <ToggleButton
+              value="5"
+              sx={{
+                width: "100%",
+              }}
+            >
+              5
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </div>
       </div>
     </div>
   );

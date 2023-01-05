@@ -46,7 +46,7 @@ function index() {
           <div className={styles.container}>
             <div className={styles.tile} style={{ height: "10rem" }}>
               <div className={styles.gpaContainer}>
-                Your Gpa is <div style={{ fontSize: "5rem" }}>{gpa}</div>
+                Your GPA is <div style={{ fontSize: "5rem" }}>{gpa}</div>
               </div>
             </div>
             <div className={styles.tile} style={{ flexDirection: "column" }}>

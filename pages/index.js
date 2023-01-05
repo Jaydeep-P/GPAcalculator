@@ -11,23 +11,17 @@ import Navbar from "components/Navbar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 let defaultArray = [
-  { grade: 0, credit: 0 },
-  { grade: 0, credit: 0 },
-  { grade: 0, credit: 0 },
-  { grade: 0, credit: 0 },
-  { grade: 0, credit: 0 },
-  { grade: 0, credit: 0 },
-  { grade: 0, credit: 0 },
-  { grade: 0, credit: 0 },
-  { grade: 0, credit: 0 },
-  { grade: 0, credit: 0 },
-  { grade: 0, credit: 0 },
-  { grade: 0, credit: 0 },
+  { grade: 6, credit: 0 },
+  { grade: 6, credit: 0 },
+  { grade: 6, credit: 0 },
+  { grade: 6, credit: 0 },
+  { grade: 6, credit: 0 },
+  { grade: 6, credit: 0 },
 ];
 
 const theme = createTheme({
   palette: {
-    primary: {  
+    primary: {
       main: "#673ab7",
     },
     success: {
@@ -106,7 +100,7 @@ export default function Home() {
                 style={{ height: "0.5rem", backgroundColor: "#673ab7" }}
               ></div>
               <div style={{ padding: "1.5rem", fontSize: "24pt" }}>
-                <div>Enter your grades</div>
+                <div>Enter your grades and credits</div>
                 <div style={{ fontSize: "11pt", marginTop: "1rem" }}>
                   A simple way to calculate you GPA
                 </div>
@@ -128,48 +122,63 @@ export default function Home() {
             </div>
 
             <div className={styles.submitButtonContainer}>
-              <Button
-                href="/result"
-                variant="contained"
-                className={styles.submitButton}
-                onClick={async (e) => {
-                  e.preventDefault();
-                  if (
+              <div style={{ display: "flex", gap: "1rem" }}>
+                <Button
+                  href="/result"
+                  variant="contained"
+                  className={styles.submitButton}
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    if (
+                      JSON.stringify(defaultArray) === JSON.stringify(infoArray)
+                    ) {
+                      return;
+                    }
+                    async function sendData() {
+                      let data = await fetch("/api/user", {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          infoArray,
+                          gpa: localStorage.getItem("gpa"),
+                          bucket: Math.round(
+                            (localStorage.getItem("gpa") - 5.0) / 0.2
+                          ),
+                        }),
+                      });
+                      // let json = await data.json();
+                      // console.log(json);
+                    }
+                    await sendData();
+                    router.push("/result");
+                  }}
+                  style={
                     JSON.stringify(defaultArray) === JSON.stringify(infoArray)
-                  ) {
-                    return;
+                      ? {
+                          backgroundColor: "rgb(209, 209, 209)",
+                          color: "rgb(155, 155, 155)",
+                        }
+                      : {}
                   }
-                  async function sendData() {
-                    let data = await fetch("/api/user", {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify({
-                        infoArray,
-                        gpa: localStorage.getItem("gpa"),
-                        bucket: Math.round(
-                          (localStorage.getItem("gpa") - 5.0) / 0.2
-                        ),
-                      }),
-                    });
-                    // let json = await data.json();
-                    // console.log(json);
-                  }
-                  await sendData();
-                  router.push("/result");
-                }}
-                style={
-                  JSON.stringify(defaultArray) === JSON.stringify(infoArray)
-                    ? {
-                        backgroundColor: "rgb(209, 209, 209)",
-                        color: "rgb(155, 155, 155)",
-                      }
-                    : {}
-                }
-              >
-                SUBMIT
-              </Button>
+                >
+                  SUBMIT
+                </Button>
+                <Button
+                  variant="contained"
+                  style={{
+                    backgroundColor: "#d1d1d1",
+                    color: "black",
+                  }}
+                  onClick={() => {
+                    let tempArr = [...infoArray, { grade: 6, credit: 0 }];
+                    setInfoArray(tempArr);
+                  }}
+                >
+                  ➕
+                </Button>
+              </div>
               <Button
                 className={styles.clearButton}
                 onClick={(e) => {

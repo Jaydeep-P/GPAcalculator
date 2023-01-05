@@ -1,6 +1,22 @@
-.container {
+.wrapper {
+  display: flex;
+  width: 100%;
   border: 1px solid #dadce0;
   border-radius: 5px;
+  overflow: hidden;
+}
+
+.serialContainer {
+  padding: 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #673ab7;
+  color: white;
+  width: 1.7rem;
+}
+
+.container {
   width: 100%;
   min-height: 10rem;
   display: flex;
@@ -11,6 +27,7 @@
 
 .sliderConatiner {
   width: 90%;
+  padding-top: 1rem;
 }
 
 .creditContainer {
@@ -20,13 +37,19 @@
   justify-content: center;
 }
 
-
-
-@media only screen and (max-width: 600px){
-	/*Big smartphones [426px -> 600px]*/
-  .container{
-    padding: 1rem 0.5rem;
+@media only screen and (max-width: 600px) {
+  /*Big smartphones [426px -> 600px]*/
+  .container {
+    padding: 0.5rem 0.5rem;
     gap: 1.5rem;
+    padding-bottom: 1rem;
   }
-  
+
+  .sliderConatiner {
+    padding: 0;
+  }
+
+  .serialContainer {
+    padding: 0.5rem;
+  }
 }
