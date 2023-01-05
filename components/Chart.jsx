@@ -99,6 +99,7 @@ const defaultData = [
 export default function Chart() {
   const [data, setData] = useState(defaultData);
   const [mx, setMx] = useState(10);
+  const [showMyScore, setShowMyScore] = useState(false);
 
   useEffect(() => {
     (async function () {
@@ -124,10 +125,16 @@ export default function Chart() {
       }
 
       let gpa = localStorage.getItem("gpa");
-      let bucket = Math.round((gpa - 5.0) / 0.2);
-      let mine = rawData[bucket].people;
+      if (gpa) {
+        let bucket = Math.round((gpa - 5.0) / 0.2);
+        if (bucket >= 0) {
+          let mine = rawData[bucket].people;
 
-      rawData[bucket] = { ...rawData[bucket], mine };
+          rawData[bucket] = { ...rawData[bucket], mine };
+          setShowMyScore(true);
+        }
+      }
+
       // console.log(rawData);
 
       //putting maximum to something evenly divisible by 5
@@ -174,7 +181,7 @@ export default function Chart() {
           fill="url(#colorpeople)"
         />
 
-        <Bar dataKey="mine" barSize={2} fill="#f10" />
+        {showMyScore && <Bar dataKey="mine" barSize={2} fill="#f10" />}
       </ComposedChart>
     </ResponsiveContainer>
   );
