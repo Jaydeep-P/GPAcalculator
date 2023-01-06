@@ -2,6 +2,17 @@
 
 A simple web application used to calculate GPA based on credits and grades.
 
+## Link
+ Temporary Link: [gpacal.live](https://gpacal.live/)
+
+## Images
+
+### Mobile Views
+![Mobile Views](https://user-images.githubusercontent.com/56064069/210945805-3b428318-7482-46dc-a5fb-a5e336e82784.png)
+
+### Lighthouse Reports
+![Lighthouse Reports](https://user-images.githubusercontent.com/56064069/210945922-b0ff005e-4635-420e-9aed-770dcf466dab.png)
+
 # Tech Stack
 
 NextJS
@@ -13,10 +24,8 @@ MongoDB
     git clone https://github.com/hrushikesh-02/GPAcalculator.git
     npm i
     npm run dev
-## Link
- Temporary : [gpacal.live](https://gpacal.live/)
+    
+
  
-## Images
-![image](https://user-images.githubusercontent.com/84844076/210545687-a0f36655-bd71-434c-bfe7-6b7ba0110f6d.png)
-![image](https://user-images.githubusercontent.com/84844076/210545756-e3ff60ad-a588-4343-af58-a4321340ba7b.png)
+
 
