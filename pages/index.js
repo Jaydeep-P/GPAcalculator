@@ -88,7 +88,16 @@ export default function Home() {
         <title>GPA Calculator</title>
         <meta name="description" content="Simple GPA calculator" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
+        <meta property="og:title" content="GPA Calculator"></meta>
+        <meta property="og:site_name" content="GPA Calculator"></meta>
+        <meta property="og:url" content="gpacal.live"></meta>
+        <meta
+          property="og:description"
+          content="A simple web app to calculate GPA from grades and credits."
+        ></meta>
+        <meta property="og:type" content="website"></meta>
+        <meta property="og:image" content="/preview.png"></meta>
       </Head>
       <div></div>
       <ThemeProvider theme={theme}>
