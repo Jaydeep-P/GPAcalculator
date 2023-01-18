@@ -79,7 +79,10 @@ function index() {
               }}
             >
               <video height="100%" ref={videoRef}>
-                <source src="/short.mp4" type="video/mp4" />
+                <source
+                  src="https://raw.githubusercontent.com/Jaydeep-P/GPAcalculator/main/public/short.mp4"
+                  type="video/mp4"
+                />
                 Sorry, your browser doesn't support videos.
               </video>
               {showTroll && (
