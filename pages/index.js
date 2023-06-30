@@ -88,7 +88,7 @@ export default function Home() {
         <title>GPA Calculator</title>
         <meta name="description" content="Simple GPA calculator" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href={process.env.base + "/favicon.png"} />
+        <link rel="icon" href={"/GPAcalculator" + "/favicon.png"} />
         <meta property="og:title" content="GPA Calculator"></meta>
         <meta property="og:site_name" content="GPA Calculator"></meta>
         <meta property="og:url" content="gpacal.live"></meta>
@@ -99,7 +99,7 @@ export default function Home() {
         <meta property="og:type" content="website"></meta>
         <meta
           property="og:image"
-          content={process.env.base + "/preview.png"}
+          content={"/GPAcalculator" + "/preview.png"}
         ></meta>
       </Head>
       <div></div>
@@ -136,7 +136,7 @@ export default function Home() {
             <div className={styles.submitButtonContainer}>
               <div style={{ display: "flex", gap: "1rem" }}>
                 <Button
-                  href={process.env.base + "/result"}
+                  href={"/GPAcalculator" + "/result"}
                   variant="contained"
                   className={styles.submitButton}
                   onClick={async (e) => {
@@ -146,7 +146,7 @@ export default function Home() {
                     ) {
                       return;
                     }
-                    router.push(process.env.base + "/result");
+                    router.push("/GPAcalculator" + "/result");
                   }}
                   style={
                     JSON.stringify(defaultArray) === JSON.stringify(infoArray)
