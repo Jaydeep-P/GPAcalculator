@@ -137,7 +137,7 @@ export default function Home() {
               <div style={{ display: "flex", gap: "1rem" }}>
                 <Button
                   href={
-                    JSON.stringify(defaultArray) === JSON.stringify(infoArray)
+                    JSON.stringify(defaultArray) !== JSON.stringify(infoArray)
                       ? "/GPAcalculator/result"
                       : null
                   }
