@@ -1,4 +1,4 @@
-export default function Footer({ troll }) {
+export default function Footer() {
   return (
     <div
       style={{
@@ -14,7 +14,6 @@ export default function Footer({ troll }) {
       }}
     >
       <div>
-        {troll ? "You have been trolled by " : "Made by "}
         <a href="https://www.linkedin.com/in/hrushi59/" target={"_blank"}>
           Hrushikesh
         </a>{" "}

@@ -19,7 +19,6 @@ const theme = createTheme({
 });
 
 function index() {
-  const [showTroll, setShowTroll] = useState(true);
   const [gpa, setGPA] = useState("...");
 
   const videoRef = useRef();
@@ -63,37 +62,8 @@ function index() {
                 Back
               </Button>
             </div>
-
-            <div
-              className={styles.tile}
-              style={{
-                aspectRatio: "1.6/1",
-                padding: 0,
-                overflow: "hidden",
-              }}
-              onClick={() => {
-                // console.log(videoRef);
-
-                videoRef.current.play();
-                setShowTroll(false);
-              }}
-            >
-              <video height="100%" ref={videoRef}>
-                <source
-                  src="https://raw.githubusercontent.com/Jaydeep-P/GPAcalculator/main/public/short.mp4"
-                  type="video/mp4"
-                />
-                Sorry, your browser doesn't support videos.
-              </video>
-              {showTroll && (
-                <div className={styles.spoilerContainer}>
-                  <Image fill src={"/cutecat.jpg"} alt="SPOILER" />
-                  <div className={styles.spoiler}>Click me</div>
-                </div>
-              )}
-            </div>
           </div>
-          <Footer troll={!showTroll} />
+          <Footer />
         </ThemeProvider>
       </div>
     </>
