@@ -6,7 +6,7 @@ export default function Navbar() {
       <div className={styles.logoContainer}>
         <div className={styles.logo}>
           <div className={styles.lhsLogo}>
-            <Image src="/logo.png" fill alt="logo" />
+            <Image src={"/GPAcalculator" + "/logo.png"} fill alt="logo" />
           </div>
           <div className={styles.rhsLogo}>
             <div className={styles.rhsLogoTop}>GPA</div>

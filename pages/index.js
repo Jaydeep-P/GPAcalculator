@@ -146,7 +146,7 @@ export default function Home() {
                     ) {
                       return;
                     }
-                    router.push("/GPAcalculator" + "/result");
+                    // router.push("/result");
                   }}
                   style={
                     JSON.stringify(defaultArray) === JSON.stringify(infoArray)
