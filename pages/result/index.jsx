@@ -40,7 +40,7 @@ function index() {
           <title>GPA Calculator</title>
           <meta name="description" content="Simple GPA calculator" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href={"/favicon.png"} />
+          <link rel="icon" href={"/GPAcalculator" + "/favicon.png"} />
         </Head>
         <ThemeProvider theme={theme}>
           <div className={styles.container}>
@@ -56,7 +56,7 @@ function index() {
             </div>
             <div className={styles.backButtonContainer}>
               <Button
-                href={"/"}
+                href={"/GPAcalculator"}
                 variant="contained"
                 className={styles.backButton}
               >

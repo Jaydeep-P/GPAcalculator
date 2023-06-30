@@ -136,18 +136,13 @@ export default function Home() {
             <div className={styles.submitButtonContainer}>
               <div style={{ display: "flex", gap: "1rem" }}>
                 <Button
-                  href={"/GPAcalculator" + "/result"}
+                  href={
+                    JSON.stringify(defaultArray) === JSON.stringify(infoArray)
+                      ? "/GPAcalculator/result"
+                      : null
+                  }
                   variant="contained"
                   className={styles.submitButton}
-                  onClick={async (e) => {
-                    e.preventDefault();
-                    if (
-                      JSON.stringify(defaultArray) === JSON.stringify(infoArray)
-                    ) {
-                      return;
-                    }
-                    // router.push("/result");
-                  }}
                   style={
                     JSON.stringify(defaultArray) === JSON.stringify(infoArray)
                       ? {
