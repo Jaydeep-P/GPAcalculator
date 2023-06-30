@@ -40,7 +40,7 @@ function index() {
           <title>GPA Calculator</title>
           <meta name="description" content="Simple GPA calculator" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/favicon.png" />
+          <link rel="icon" href={process.env.base + "/favicon.png"} />
         </Head>
         <ThemeProvider theme={theme}>
           <div className={styles.container}>
@@ -56,7 +56,7 @@ function index() {
             </div>
             <div className={styles.backButtonContainer}>
               <Button
-                href="/"
+                href={process.env.base + "/"}
                 variant="contained"
                 className={styles.backButton}
               >
@@ -87,7 +87,11 @@ function index() {
               </video>
               {showTroll && (
                 <div className={styles.spoilerContainer}>
-                  <Image fill src="/cutecat.jpg" alt="SPOILER" />
+                  <Image
+                    fill
+                    src={process.env.base + "/cutecat.jpg"}
+                    alt="SPOILER"
+                  />
                   <div className={styles.spoiler}>Click me</div>
                 </div>
               )}
