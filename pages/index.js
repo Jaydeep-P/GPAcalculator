@@ -143,24 +143,6 @@ export default function Home() {
                     ) {
                       return;
                     }
-                    async function sendData() {
-                      let data = await fetch("/api/user", {
-                        method: "POST",
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                          infoArray,
-                          gpa: localStorage.getItem("gpa"),
-                          bucket: Math.round(
-                            (localStorage.getItem("gpa") - 5.0) / 0.2
-                          ),
-                        }),
-                      });
-                      // let json = await data.json();
-                      // console.log(json);
-                    }
-                    await sendData();
                     router.push("/result");
                   }}
                   style={

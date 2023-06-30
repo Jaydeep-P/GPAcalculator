@@ -102,47 +102,141 @@ export default function Chart() {
   const [showMyScore, setShowMyScore] = useState(false);
 
   useEffect(() => {
-    (async function () {
-      let incomingData = await fetch("/api/graphData", {
-        method: "GET",
-      });
-      // console.log(incomingData);
-      let rawData = await incomingData.json();
-      let total = rawData.reduce(
-        (partialSum, a) => partialSum + a.numPeople,
-        0
-      );
+    let rawData = [
+      {
+        bucketIndex: 0,
+        numPeople: 203,
+      },
+      {
+        bucketIndex: 1,
+        numPeople: 137,
+      },
+      {
+        bucketIndex: 2,
+        numPeople: 132,
+      },
+      {
+        bucketIndex: 3,
+        numPeople: 252,
+      },
+      {
+        bucketIndex: 4,
+        numPeople: 284,
+      },
+      {
+        bucketIndex: 5,
+        numPeople: 523,
+      },
+      {
+        bucketIndex: 6,
+        numPeople: 513,
+      },
+      {
+        bucketIndex: 7,
+        numPeople: 566,
+      },
+      {
+        bucketIndex: 8,
+        numPeople: 893,
+      },
+      {
+        bucketIndex: 9,
+        numPeople: 950,
+      },
+      {
+        bucketIndex: 10,
+        numPeople: 1644,
+      },
+      {
+        bucketIndex: 11,
+        numPeople: 1575,
+      },
+      {
+        bucketIndex: 12,
+        numPeople: 1683,
+      },
+      {
+        bucketIndex: 13,
+        numPeople: 2466,
+      },
+      {
+        bucketIndex: 14,
+        numPeople: 2779,
+      },
+      {
+        bucketIndex: 15,
+        numPeople: 4593,
+      },
+      {
+        bucketIndex: 16,
+        numPeople: 3774,
+      },
+      {
+        bucketIndex: 17,
+        numPeople: 4093,
+      },
+      {
+        bucketIndex: 18,
+        numPeople: 4977,
+      },
+      {
+        bucketIndex: 19,
+        numPeople: 4779,
+      },
+      {
+        bucketIndex: 20,
+        numPeople: 6999,
+      },
+      {
+        bucketIndex: 21,
+        numPeople: 4356,
+      },
+      {
+        bucketIndex: 22,
+        numPeople: 3790,
+      },
+      {
+        bucketIndex: 23,
+        numPeople: 3793,
+      },
+      {
+        bucketIndex: 24,
+        numPeople: 2380,
+      },
+      {
+        bucketIndex: 25,
+        numPeople: 1247,
+      },
+    ];
+    let total = rawData.reduce((partialSum, a) => partialSum + a.numPeople, 0);
 
-      let maximum = 0;
-      for (let i = 0; i < rawData.length; i++) {
-        let el = {};
-        if (rawData[i].bucketIndex % 5 == 0) {
-          el.gpa = rawData[i].bucketIndex / 5 + 5.0;
-        }
-        el.people = ((rawData[i].numPeople / total) * 100).toFixed(2);
-        maximum = Math.max(maximum, el.people);
-        rawData[i] = el;
+    let maximum = 0;
+    for (let i = 0; i < rawData.length; i++) {
+      let el = {};
+      if (rawData[i].bucketIndex % 5 == 0) {
+        el.gpa = rawData[i].bucketIndex / 5 + 5.0;
       }
+      el.people = ((rawData[i].numPeople / total) * 100).toFixed(2);
+      maximum = Math.max(maximum, el.people);
+      rawData[i] = el;
+    }
 
-      let gpa = localStorage.getItem("gpa");
-      if (gpa) {
-        let bucket = Math.round((gpa - 5.0) / 0.2);
-        if (bucket >= 0) {
-          let mine = rawData[bucket].people;
+    let gpa = localStorage.getItem("gpa");
+    if (gpa) {
+      let bucket = Math.round((gpa - 5.0) / 0.2);
+      if (bucket >= 0) {
+        let mine = rawData[bucket].people;
 
-          rawData[bucket] = { ...rawData[bucket], mine };
-          setShowMyScore(true);
-        }
+        rawData[bucket] = { ...rawData[bucket], mine };
+        setShowMyScore(true);
       }
+    }
 
-      // console.log(rawData);
+    //putting maximum to something evenly divisible by 5
+    maximum += 5.0 - (maximum % 5.0);
 
-      //putting maximum to something evenly divisible by 5
-      maximum += 5.0 - (maximum % 5.0);
-
-      setMx(maximum);
-      setData(rawData);
-    })();
+    setMx(maximum);
+    setData(rawData);
   }, []);
 
   return (
