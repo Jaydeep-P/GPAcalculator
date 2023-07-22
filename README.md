@@ -5,7 +5,7 @@ A simple web application used to calculate GPA based on credits and grades.
 Used over 31k times over a span of 3-4 days. 
 
 ## Link
- Temporary Link: [gpacal.live](https://gpacal.live/)
+ Github Pages Link: [gpacal.live](https://jaydeep-p.github.io/GPAcalculator/)
 
 ## Images
 
